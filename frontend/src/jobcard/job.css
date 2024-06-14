@@ -18,7 +18,7 @@
   .btn {
     display: inline-block;
     padding: 8px 16px;
-    background-color: #007bff;
+    background-color: #7ea1f4;
     color: #fff;
     text-decoration: none;
     border-radius: 40px;
@@ -27,5 +27,5 @@
   }
   
   .btn:hover {
-    background-color: #41ff37;
+    background-color: #004cff;
   }

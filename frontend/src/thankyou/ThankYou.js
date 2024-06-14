@@ -83,7 +83,7 @@ const ThankYou = () => {
 
   return (
     <>
-      <div className="thank-you-container">
+      <div className="container">
         <h1>Thank You</h1>
         {interview_id ? (
           <p>Thank you for submitting your application! Your interview ID is: <b>{interview_id}</b></p>
@@ -92,7 +92,7 @@ const ThankYou = () => {
         )}
       </div>
       <br/><br/>
-      <button onClick={(e) => navigate("/feedback")} style={{ width: "150px", marginLeft: "auto", marginRight: "auto", display: "flex", justifyContent: "center" }}>interview feedback</button>
+      <button className='btn' onClick={(e) => navigate("/feedback")} style={{ width: "150px", marginLeft: "auto", marginRight: "auto", display: "flex", justifyContent: "center" }}>Interview feedback</button>
     </>
   );
 };

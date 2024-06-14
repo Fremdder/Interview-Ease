@@ -51,7 +51,7 @@ const ApplyNow = () => {
   };
 
   return (
-    <div className="apply-now-container">
+    <div className="container">
       <h1>Apply Now for Job Interview</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

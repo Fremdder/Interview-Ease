@@ -27,7 +27,7 @@ const Landing = () => {
     <div>
       <div className="job-container">
          <div>    
-          <h1>Number of Job Cards/Applications which is  Now: {jobCards.length} </h1>
+          <h1>Number of Job Applications which is availbale now: {jobCards.length} </h1>
           <br/>  
         </div>  
 </div>

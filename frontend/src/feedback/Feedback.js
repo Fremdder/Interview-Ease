@@ -41,7 +41,7 @@ const Feedback = () => {
   };
 
   return (
-    <div className="feedback-container">
+    <div className="container">
       <h1>Submit Interview Feedback</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -65,7 +65,7 @@ const Feedback = () => {
             required
           ></textarea>
         </div>
-        <button type="submit">Submit Feedback</button>
+        <button className='btn' type="submit">Submit Feedback</button>
       </form>
     </div>
   );
