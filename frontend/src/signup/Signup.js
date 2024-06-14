@@ -47,7 +47,7 @@ const Signup = () => {
 
   return (
     <div className="container">
-      <h1>Signup</h1>
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
@@ -118,7 +118,7 @@ const Signup = () => {
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button className='btn' type="submit">Sign Up</button>
       </form>
       <p>Already have an account? <Link to="/login">Login</Link></p>
     </div>

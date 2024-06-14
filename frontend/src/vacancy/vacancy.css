@@ -23,18 +23,24 @@
   input[type="text"],
   input[type="number"],
   textarea {
-    width: 100%;
+    width: 98%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    
   }
   
   textarea {
-    height: 150px; /* Adjust the height as needed */
+    height: 150px; 
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+   /* Adjust the height as needed */
   }
   
   button {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     background-color: #007bff;
     color: #fff;

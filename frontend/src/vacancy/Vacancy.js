@@ -44,7 +44,7 @@ const Vacancy = () => {
   };
 
   return (
-    <div className="create-vacancy-container">
+    <div className="container">
       <h1>Create New Vacancy</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -90,7 +90,7 @@ const Vacancy = () => {
             required
           ></textarea>
         </div>
-        <button type="submit">Create Vacancy</button>
+        <button className='btn' type="submit">Create Vacancy</button>
       </form>
     </div>
   );
