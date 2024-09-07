@@ -13,6 +13,7 @@ const Signup = () => {
   
   const navigate = useNavigate();
 
+  if(localStorage.getItem("token")) navigate("/landing");
   const handleSubmit = async (e) => {
     e.preventDefault();
     const postData = {

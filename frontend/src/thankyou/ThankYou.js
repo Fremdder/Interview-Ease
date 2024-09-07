@@ -92,7 +92,7 @@ const ThankYou = () => {
         )}
       </div>
       <br/><br/>
-      <button className='btn' onClick={(e) => navigate("/feedback")} style={{ width: "150px", marginLeft: "auto", marginRight: "auto", display: "flex", justifyContent: "center" }}>Interview feedback</button>
+      <button className='btn' onClick={(e) => navigate("/landing")} style={{ width: "150px", marginLeft: "auto", marginRight: "auto", display: "flex", justifyContent: "center" }}>Go to Home</button>
     </>
   );
 };

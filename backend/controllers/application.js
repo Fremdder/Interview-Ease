@@ -67,5 +67,47 @@ const Feedback = (req,res) =>{
     })
 }
 
+const setStatus = (req, res) => {
+    const { status_name, candidate_id } = req.body;
 
-module.exports = {Application,Feedback};
+    // Validate that status_name and candidate_id are provided
+    if (!status_name || !candidate_id) {
+        return res.status(400).json({ message: "Both status_name and candidate_id are required" });
+    }
+
+    // Update the status_name in the interview table
+    const query = 'UPDATE interview SET status_name = ? WHERE candidate_id = ?';
+    db.query(query, [status_name, candidate_id], (error, result) => {
+        if (error) {
+            console.error("Error updating status:", error);
+            return res.status(500).json({ message: "Database error", error });
+        } else {
+            console.log("Interview status updated");
+            return res.status(200).json({ message: "Status updated successfully" });
+        }
+    });
+};
+
+
+const getStatus = (req, res) => {
+    const { candidate_id } = req.body; // Assuming candidate_id is passed in the body of the request
+
+    // Modify the query to select all relevant columns
+    db.query('SELECT * FROM interview WHERE candidate_id = ?', [candidate_id], (error, result) => {
+        if (error) {
+            console.log("Error fetching interview details:", error);
+            return res.status(500).json({ message: "Database error", error });
+        } else {
+            if (result.length === 0) {
+                console.log("No interview details found");
+                return res.status(404).json({ message: "No interview details found" });
+            } else {
+                console.log("Interview details retrieved");
+                return res.status(200).json(result); // Send the entire result array
+            }
+        }
+    });
+};
+
+
+module.exports = {Application,Feedback,getStatus,setStatus};

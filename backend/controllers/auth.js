@@ -1,4 +1,5 @@
 const connectToDatabase = require('../config/db.config');
+const { getJwt } = require('../utils/jwt');
 
 const db = connectToDatabase();
 const RegisterCandidate = (req,res) => {
@@ -29,9 +30,7 @@ const RegisterCandidate = (req,res) => {
 
 const SignIn = (req,res) => {
     console.log(req.body);
-    
     const {email,password} = req.body;
-
     db.query('SELECT email FROM Candidate where email = ?',[email],(error,result)=>{
         if(error){
             console.log(error);
@@ -39,7 +38,7 @@ const SignIn = (req,res) => {
             console.log("Invalid Credential");
             return res.status(404).json({message : "Invalid Credential"});
         }else{
-            db.query('SELECT password FROM Candidate where email = ?',[email],(error,result)=>{
+            db.query('SELECT * FROM Candidate where email = ?',[email],(error,result)=>{
                 if(error){
                     console.log(error);
                 }
@@ -47,7 +46,9 @@ const SignIn = (req,res) => {
                 if(password!=result[0].password){
                     return res.status(400).json({message : "Invalid Credential"});
                 }else{
-                    return res.status(200).json({message : "Login Successfully"});
+                    const jwtToken = getJwt({ email: email, candidate_id:result[0].candidate_id });
+                    return res.status(200).json({message : "Login Successfully",data:{email: email,
+                        secret: jwtToken,}});
                 }
             });
         }

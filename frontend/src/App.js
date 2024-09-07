@@ -9,6 +9,7 @@ import ApplyNow from './apply/ApplyNow';
 import Vacancy from './vacancy/Vacancy';
 import Feedback from './feedback/Feedback';
 import ThankYou from './thankyou/ThankYou';
+import Status from './status/status';
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/vacancy" element={<Vacancy/>} />
         <Route path="/feedback" element={<Feedback/>}/>
         <Route path="/ThankYou" element={<ThankYou/>}/>
+        <Route path="/status" element={<Status/>}/>
 
         {/* Redirect to the login page if no matching route found */}
         <Route path="*" element={<Navigate to="/login" />} />

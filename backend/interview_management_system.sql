@@ -14,7 +14,8 @@ CREATE TABLE vacancy (
   availability INT NOT NULL,
   description TEXT NOT NULL,
   status TINYINT(1) NOT NULL DEFAULT 1,
-  date_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  date_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  duration INT NOT NULL DEFAULT 0
 );
 
 
@@ -33,22 +34,19 @@ CREATE TABLE application (
   date_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE interview_status (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  status_name VARCHAR(50) NOT NULL
-);
 
 CREATE TABLE interview (
   id INT AUTO_INCREMENT PRIMARY KEY,
   candidate_id INT NOT NULL,
   vacancy_id INT NOT NULL,
-  interview_date DATETIME NOT NULL,
-  location VARCHAR(100),
-  interviewer VARCHAR(100),
-  notes TEXT,
+  interview_date DATETIME NULL , -- Default to the current date and time
+  location VARCHAR(100) DEFAULT 'Not specified', -- Default location
+  interviewer VARCHAR(100) DEFAULT 'TBD', -- Default interviewer
+  status_name VARCHAR(50) DEFAULT 'Pending', -- Default status
   FOREIGN KEY (candidate_id) REFERENCES Candidate(candidate_id),
   FOREIGN KEY (vacancy_id) REFERENCES vacancy(id)
 );
+
 
 CREATE TABLE interview_feedback (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -70,32 +68,21 @@ REFERENCES vacancy(id);
 
 -- Add foreign key constraints for other tables as needed
 
-ALTER TABLE interview
-ADD COLUMN status_id INT,
-ADD CONSTRAINT fk_interview_status
-FOREIGN KEY (status_id)
-REFERENCES interview_status(id);
+-- ALTER TABLE interview
+-- ADD COLUMN status_id INT,
+-- ADD CONSTRAINT fk_interview_status
+-- FOREIGN KEY (status_id)
+-- REFERENCES interview_status(id);
 
 ALTER TABLE application
 ADD CONSTRAINT fk_vacancy_id
 FOREIGN KEY (vacancy_id)
 REFERENCES vacancy(id);
 
-ALTER TABLE vacancy
-ADD COLUMN duration INT NOT NULL DEFAULT 0;
 
-ALTER TABLE interview DROP FOREIGN KEY fk_interview_status;
+-- ALTER TABLE interview DROP FOREIGN KEY fk_interview_status;
 
 -- Drop the column status_id
-ALTER TABLE interview DROP COLUMN status_id;
-
-DROP TABLE interview_status;
-
-ALTER TABLE interview
-DROP COLUMN interview_date,
-DROP COLUMN location,
-DROP COLUMN interviewer,
-DROP COLUMN notes;
 
 
 

@@ -7,6 +7,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  if(localStorage.getItem("token")) navigate("/landing");
   const handleSubmit = async (e) => {
     e.preventDefault();
     const postData = {
@@ -25,12 +26,18 @@ const Login = () => {
       // const data = await response.json();
       if(response.ok){
         console.log('Login successful. Response:');
+        const data = await response.json();
+        // console.log(data.data.secret);
+        localStorage.setItem("token",data.data.secret);
         navigate("/landing");
       }
     } catch (error) {
       console.error('Error logging in:', error);
     }
   };
+  const handleAdmin = ()=>{
+    navigate("/vacancy");       
+  }
 
   return (
     <div className="container">
@@ -61,6 +68,7 @@ const Login = () => {
           />
         </div>
         <button className='btn' type="submit">Login</button>
+        <button className='btn' onClick={handleAdmin}>Login as Admin</button>
       </form>
       <p>Don't have an account? <Link to="/Signup">Signup</Link></p>
     </div>
